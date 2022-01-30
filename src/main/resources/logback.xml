@@ -1,0 +1,42 @@
+<configuration>
+
+    <property name="env" value="${env}"/>
+
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%d{HH:mm:ss.SSS} [%thread] %-5level - %msg%n"/>
+
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <file>log/log.file</file>
+        <append>true</append>
+        <!-- set immediateFlush to false for much higher logging throughput -->
+        <immediateFlush>true</immediateFlush>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.test" level="INFO"/>
+    <logger name="akka.kafka" level="ERROR"/>
+    <logger name="org.apache.kafka" level="ERROR"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
