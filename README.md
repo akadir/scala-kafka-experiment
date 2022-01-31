@@ -12,7 +12,7 @@ docker-compose up
 2. create topic:
 ```
 cd .docker-compose-kafka
-docker-compose exec broker kafka-topics --create --topic test.exception.topic --bootstrap-server broker:9092
+docker-compose exec broker kafka-topics --create --topic test-exception-topic --bootstrap-server broker:9092
 ```
 
 3. run project
